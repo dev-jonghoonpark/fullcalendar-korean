@@ -110,7 +110,7 @@
 
         // eventLimit
         eventLimit: false,
-        eventLimitHeight: 80
+        eventHeight: 50
     };
 
 
@@ -6398,8 +6398,11 @@ function enableTextSelection(element) {
             // Each segment object has a "top" property, which is relative to the row's top, but...
             var moreId = 1;
             segmentElementEach(segments, function(segment, element) {
-                console.log(segment);
-                if(segment.top < opt('eventLimitHeight') || opt('eventLimit') === false){
+                var cellHeight = parseInt($('.fc-day-content').css('height'));
+                var eventHeight = opt('eventHeight');
+                var eventCount = Math.floor(cellHeight/eventHeight);
+
+                if(segment.top < cellHeight - eventHeight || opt('eventLimit') === false){
                     element.css(
                         'top',
                         rowContentTops[segment.row] + segment.top // ...now, relative to views's origin
@@ -6408,13 +6411,15 @@ function enableTextSelection(element) {
                     var leftCol = segment.leftCol;
                     var rightCol = segment.rightCol;
                     var colCount = rightCol - leftCol + 1;
+
+                    var loopCount = 0;
                     while (leftCol <= rightCol) {
                         var eventContainer = element.closest('.fc-event-container');
                         var dropdownContainer = eventContainer.find('div.leftCol-' + leftCol + '.row-' + segment.row);
                         if (dropdownContainer.length === 0) {
                             dropdownContainer = $('<div class="fc-popover dropdown">')
-                                .css('top', rowContentTops[segment.row] + 100)
-                                .css('left', segment.left + 2 + (leftCol === rightCol ? 0 : Math.round((segment.outerWidth + 2 * colCount) / colCount)))
+                                .css('top', rowContentTops[segment.row] + eventHeight * eventCount)
+                                .css('left', segment.left + (loopCount === 0 ? 0 : Math.round((segment.outerWidth) / colCount) * loopCount))
                                 .css('position', 'absolute')
                                 .addClass('leftCol-' + leftCol)
                                 .addClass('row-' + segment.row)
@@ -6434,6 +6439,7 @@ function enableTextSelection(element) {
                         dropdownContainer.find('ul.fc-pop-list').append($('<li>').append(element.clone()));
 
                         leftCol++;
+                        loopCount++;
                     }
                 }
             });
