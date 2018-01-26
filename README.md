@@ -7,6 +7,7 @@
 다운그레이드시 eventLimit 기능이 되지않아 2.0.3 버전([원본](https://github.com/cdnjs/cdnjs/blob/master/ajax/libs/fullcalendar/2.0.3/fullcalendar.js))을 베이스로 다시 제작하였습니다.
 
 ![Imgur](https://i.imgur.com/Jv52wwl.png)
+![Imgur](https://i.imgur.com/hNSqKBe.png)
 
 아래 코드는 제가 처리한 설정입니다.
 현재 버전의 fullcalendar와 달리 height처리를 통해 사라질 부분을 정합니다. (eventLimit, eventLHeight 옵션값 사용)
