@@ -10,7 +10,7 @@
 ![Imgur](https://i.imgur.com/hNSqKBe.png)
 
 아래 코드는 제가 처리한 설정입니다.
-현재 버전의 fullcalendar와 달리 height처리를 통해 사라질 부분을 정합니다. (eventLimit, eventLHeight 옵션값 사용)
+현재 버전의 fullcalendar와 달리 height처리를 통해 사라질 부분을 정합니다. (eventLimit, eventHeight 옵션값 사용)
 
 ```
 <style>
