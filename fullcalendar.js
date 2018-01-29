@@ -1178,15 +1178,20 @@
                                 }
                                 else if (normalIcon && !options.theme) {
                                     html = "<span class='fc-icon fc-icon-" + normalIcon + "'></span>";
+                                    if (normalIcon.indexOf('left') >= 0) {
+                                        html += "<span class='sr-only'>이전달</span>";
+                                    } else {
+                                        html += "<span class='sr-only'>다음달</span>";
+                                    }
                                 }
                                 else {
                                     html = htmlEscape(defaultText || buttonName);
                                 }
 
                                 var button = $(
-                                    "<span class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
+                                    "<button class='fc-button fc-button-" + buttonName + " " + tm + "-state-default'>" +
                                     html +
-                                    "</span>"
+                                    "</button>"
                                 )
                                     .click(function() {
                                         if (!button.hasClass(tm + '-state-disabled')) {
